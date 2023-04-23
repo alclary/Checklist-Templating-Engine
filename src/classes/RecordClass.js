@@ -1,7 +1,7 @@
 import moment from "moment/moment";
 import { db } from "../functions/db";
 
-export default class Record {
+export default class RecordClass {
   constructor(id, recordType) {
     // required
     this.id = id;
@@ -29,4 +29,4 @@ export default class Record {
   }
 }
 
-db.records.mapToClass(Record);
+db.records.mapToClass(RecordClass);
