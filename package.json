@@ -10,6 +10,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@rjsf/core": "^5.6.2",
+    "@rjsf/utils": "^5.6.2",
+    "@rjsf/validator-ajv8": "^5.6.2",
     "dexie": "^3.2.3",
     "moment": "^2.29.4",
     "purecss": "^3.0.0",
