@@ -11,8 +11,8 @@ import Records from "./pages/Records";
 import RecordsCards from "./pages/RecordsCards";
 import Template from "./pages/Template";
 import Templates from "./pages/Templates";
-
-import "./App.css";
+import SetupDebug from "./pages/SetupDebug";
+import Navbar from "./components/Navbar";
 
 function App() {
   const router = createBrowserRouter(
@@ -24,23 +24,22 @@ function App() {
         <Route path="records/:recordId" element={<Record />} />
         <Route path="templates" element={<Templates />} />
         <Route path="templates/:templateId" element={<Template />} />
+        <Route path="setupDebug" element={<SetupDebug />} />
       </Route>
     )
   );
 
   return (
-    <>
-      <div>
-        <h1>Hello React!</h1>
-        <RouterProvider router={router} />
-      </div>
-    </>
+    <div className="ui grid">
+      <RouterProvider router={router} />
+    </div>
   );
 }
 
 const Root = () => {
   return (
     <>
+      <Navbar />
       <Outlet />
     </>
   );
