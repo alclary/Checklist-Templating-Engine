@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { db } from "../functions/db";
-import moment from "moment";
-import FormSchemaDisplay from "../components/FormSchemaDisplay";
+import validator from "@rjsf/validator-ajv8";
+import SchemaForm from "@rjsf/semantic-ui";
+import TemplateMetadataForm from "../components/TemplateMetadataForm";
 
 export default function Template() {
   const { templateId } = useParams();
@@ -25,81 +26,37 @@ export default function Template() {
     setLoading(false);
   };
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    template.lastModified = Date.now();
+  function handleSubmit() {
     db.templates.put(template);
-    console.log("Template saved!");
   }
+
+  const uiSchema = {};
 
   if (isLoading) {
-    return <div className="loading">Loading...</div>;
+    return (
+      <div className="loading">
+        <i className="huge notched circle loading icon"></i>
+      </div>
+    );
   }
   return (
-    <>
-      <form onSubmit={handleSubmit} className="pure-form pure-form-stacked">
-        <fieldset>
-          <legend>Template Builder</legend>
-          <div className="pure-g">
-            <div className="pure-u-1-2">
-              <label htmlFor="multi-name-input">Template Name</label>
-              <input
-                type="text"
-                id="multi-name-input"
-                className="pure-u-2-3"
-                value={template.templateName}
-                onChange={(e) => {
-                  setTemplate({ ...template, templateName: e.target.value });
-                  console.log(template);
-                }}
-              ></input>
-            </div>
-            <div className="pure-u-1-2">
-              <label htmlFor="multi-color-input">Template Color</label>
-              <input
-                type="color"
-                id="multi-color-input"
-                className="pure-u-1-3"
-                value={template.templateColor}
-                onChange={(e) => {
-                  setTemplate({ ...template, templateColor: e.target.value });
-                  console.log(template);
-                }}
-              ></input>
-            </div>
-            <div className="pure-u-1-2">
-              <label htmlFor="multi-date-created">Date Created</label>
-              <input
-                type="date"
-                id="multi-date-created"
-                className="pure-u-2-3"
-                value={moment(template.dateCreated).format("YYYY-MM-DD")}
-                // hacky insert of 'disabled=""' attribute needed by PureCSS
-                {...{ disabled: '""' }}
-              ></input>
-            </div>
-            <div className="pure-u-1-2">
-              <label htmlFor="multi-last-modified">Last Modified</label>
-              <input
-                type="date"
-                id="multi-last-modified"
-                className="pure-u-2-3"
-                value={moment(template.lastModified).format("YYYY-MM-DD")}
-                // hacky insert of 'disabled=""' attribute needed by PureCSS
-                {...{ disabled: '""' }}
-              ></input>
-            </div>
-
-            {/* Component that visually displays what is in the schema currently */}
-            <FormSchemaDisplay schema={template.schema} />
-            {/* Component that can add items to the schema */}
-
-            <button type="submit" className="pure-button pure-button-primary">
-              Submit
-            </button>
-          </div>
-        </fieldset>
-      </form>
-    </>
+    <div className="templateWrapper sixteen wide column">
+      <TemplateMetadataForm template={template} setTemplate={setTemplate} />
+      <SchemaForm
+        schema={template.schema}
+        validator={validator}
+        formData={template.formData}
+        uiSchema={uiSchema}
+        onChange={(e) => {
+          console.log(e);
+          setTemplate({ ...template, formData: e.formData });
+        }}
+        onSubmit={handleSubmit}
+      >
+        <div>
+          <button type="submit">Save Schema</button>
+        </div>
+      </SchemaForm>
+    </div>
   );
 }
