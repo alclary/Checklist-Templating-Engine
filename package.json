@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@rjsf/core": "^5.6.2",
+    "@rjsf/semantic-ui": "^5.6.2",
     "@rjsf/utils": "^5.6.2",
     "@rjsf/validator-ajv8": "^5.6.2",
     "dexie": "^3.2.3",
