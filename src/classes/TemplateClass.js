@@ -10,21 +10,49 @@ export default class TemplateClass {
     // initialized to defaults
     this.templateColor = "#fff";
     this.templateTags = [templateName];
+    // ReactJSONSchemaForm - Schema
     this.schema = {
       type: "object",
-      required: [],
       properties: {
-        sampleCheck1: {
-          type: "boolean",
-          title: "Sample Checkbox 1",
-          default: false,
-        },
-        sampleCheck2: {
-          type: "boolean",
-          title: "Sample Checkbox 2",
-          default: false,
+        sections: {
+          type: "array",
+          title: "Template Body",
+          items: {
+            type: "object",
+            required: ["sectionTitle"],
+            properties: {
+              sectionTitle: {
+                type: "string",
+                title: "Section Title",
+              },
+              sectionDescription: {
+                type: "string",
+                title: "Section Description",
+              },
+              checkItems: {
+                type: "array",
+                items: {
+                  type: "object",
+                  properties: {
+                    checkboxDesc: {
+                      type: "string",
+                      title: "Checkbox Description",
+                    },
+                  },
+                },
+              },
+            },
+          },
         },
       },
+    };
+    // ReactJSONSchemaForm - FormData
+    this.formData = {
+      sections: [
+        {
+          checkItems: [],
+        },
+      ],
     };
   }
 }
