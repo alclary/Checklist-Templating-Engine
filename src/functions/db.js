@@ -1,7 +1,7 @@
 import Dexie from "dexie";
 
-export const db = new Dexie("appDatabase");
+export const db = new Dexie("testingDatabase");
 db.version(1).stores({
-  records: "&id, totalAge, *tags",
+  records: "++id, &recordId, recordType, *tags",
   templates: "++id, name, *tags",
 });
