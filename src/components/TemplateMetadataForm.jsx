@@ -9,7 +9,7 @@ function TemplateMetadataForm({ template, setTemplate }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    template.lastModified = Date.now();
+    setTemplate({ ...template, lastModified: Date.now() });
     db.templates.put(template);
     console.log("Template saved!");
   }
@@ -76,15 +76,16 @@ function TemplateMetadataForm({ template, setTemplate }) {
             ></input>
           </div>
         </div>
+
+        <button type="submit" className="ui right floated button">
+          Submit
+        </button>
         <button
           type="button"
           className="ui right floated inverted red button"
           onClick={handleDelete}
         >
           Delete
-        </button>
-        <button type="submit" className="ui right floated button">
-          Submit
         </button>
       </form>
     </div>

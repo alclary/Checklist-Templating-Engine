@@ -1,5 +1,5 @@
 import SearchBar from "../components/SearchBar";
-import ListItem from "../components/ListItem";
+import TemplateListItem from "../components/TemplateListItem";
 import { useLiveQuery } from "dexie-react-hooks";
 import { db } from "../functions/db";
 
@@ -11,9 +11,9 @@ export default function Templates() {
   return (
     <>
       <SearchBar />
-      <div id="templateList" className="ui cards">
+      <div id="templateList" className="row ui four cards">
         {templates?.map((template) => (
-          <ListItem key={template.id} template={template} />
+          <TemplateListItem key={template.id} template={template} />
         ))}
       </div>
     </>
