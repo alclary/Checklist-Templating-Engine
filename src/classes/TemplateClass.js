@@ -23,20 +23,25 @@ export default class TemplateClass {
             properties: {
               sectionTitle: {
                 type: "string",
-                title: "Section Title",
+                title: "New section title:",
               },
               sectionDescription: {
                 type: "string",
-                title: "Section Description",
+                title: "New section description:",
               },
               checkItems: {
                 type: "array",
                 items: {
                   type: "object",
                   properties: {
+                    checkboxText: {
+                      type: "string",
+                      title: "Checkbox text:",
+                    },
                     checkboxDesc: {
                       type: "string",
-                      title: "Checkbox Description",
+                      title:
+                        "(Optional) information or instructions for checkbox:",
                     },
                   },
                 },
@@ -50,7 +55,17 @@ export default class TemplateClass {
     this.formData = {
       sections: [
         {
-          checkItems: [],
+          checkItems: [
+            {
+              checkboxText: "checkbox1.1_text",
+              checkboxDesc: "checkbox1.1_desc_optional",
+            },
+            {
+              checkboxText: "checkbox1.2_text",
+            },
+          ],
+          sectionTitle: "section1_title",
+          sectionDesc: "section1_desc_optional",
         },
       ],
     };
