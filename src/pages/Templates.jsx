@@ -10,6 +10,7 @@ export default function Templates() {
 
   return (
     <>
+      <h2>Templates View</h2>
       <SearchBar />
       <div id="templateList" className="row ui four cards">
         {templates?.map((template) => (
