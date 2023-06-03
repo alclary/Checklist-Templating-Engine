@@ -1,5 +1,5 @@
 import { db } from "../functions/db";
-import axios from "axios";
+// import axios from "axios";
 
 export default class RecordClass {
   constructor(recordId, recordType) {
@@ -25,5 +25,3 @@ export default class RecordClass {
     return;
   }
 }
-
-db.records.mapToClass(RecordClass);

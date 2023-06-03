@@ -1,5 +1,3 @@
-import { db } from "../functions/db";
-
 export default class TemplateClass {
   constructor(templateName) {
     // required
@@ -71,5 +69,3 @@ export default class TemplateClass {
     };
   }
 }
-
-db.templates.mapToClass(TemplateClass);
