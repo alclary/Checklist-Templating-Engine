@@ -8,5 +8,5 @@ db.version(1).stores({
   templates: "++id, name, *tags",
 });
 
-// db.templates.mapToClass(TemplateClass);
-// db.records.mapToClass(RecordClass);
+db.templates.mapToClass(TemplateClass);
+db.records.mapToClass(RecordClass);
