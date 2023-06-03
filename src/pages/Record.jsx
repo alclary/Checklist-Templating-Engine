@@ -20,7 +20,6 @@ export default function Record() {
       .equals(recordId)
       .first((record) => {
         setRecord(record);
-        console.log(record);
       })
       .catch((err) => console.error(err));
     setLoading(false);
