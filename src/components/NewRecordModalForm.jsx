@@ -17,8 +17,6 @@ export default function NewRecordModalForm({ setShowRecordCreate }) {
     } else {
       const newRecord = new RecordClass(newRecordId, newRecordType);
       await newRecord.init();
-      console.log(newRecord);
-      await db.records.put(newRecord);
     }
   }
 
@@ -27,7 +25,7 @@ export default function NewRecordModalForm({ setShowRecordCreate }) {
   });
 
   return (
-    <div className="newRecordModalForm ui clearing segment ten wide column">
+    <div className="modalForm ui clearing segment ten wide column">
       <form onSubmit={handleSubmit} className="ui form">
         <div className="ui dividing header">Create New Record:</div>
         <div className="two fields">
