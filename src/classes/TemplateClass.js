@@ -6,8 +6,8 @@ export default class TemplateClass {
     this.dateCreated = Date.now();
     this.lastModified = undefined;
     // initialized to defaults
-    this.templateColor = "#fff";
-    this.templateTags = [templateName];
+    this.color = "#fff";
+    this.tags = [templateName];
     // ReactJSONSchemaForm - Schema
     this.schema = {
       type: "object",
