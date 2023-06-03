@@ -5,3 +5,13 @@ body {
 #navbar {
   padding-top: 5em;
 }
+
+.pageTitle > h2 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.modalForm {
+  margin-left: 1rem !important;
+  margin-right: 1rem !important;
+}
