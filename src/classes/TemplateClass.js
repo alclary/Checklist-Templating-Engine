@@ -1,12 +1,14 @@
+import { db } from "../functions/db";
+
 export default class TemplateClass {
-  constructor(templateName) {
+  constructor(templateName, templateHexColor) {
     // required
-    this.templateName = templateName;
+    this.name = templateName;
+    this.color = templateHexColor;
     // metadata
     this.dateCreated = Date.now();
-    this.lastModified = undefined;
+    this.lastModified = Date.now();
     // initialized to defaults
-    this.color = "#fff";
     this.tags = [templateName];
     // ReactJSONSchemaForm - Schema
     this.schema = {
