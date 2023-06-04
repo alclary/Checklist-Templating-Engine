@@ -27,7 +27,7 @@ export default function Records() {
 
       <div id="recordList" className="ui cards">
         {records?.map((record) => (
-          <RecordListItem key={record.recordId} record={record} />
+          <RecordListItem key={record.name} record={record} />
         ))}
       </div>
     </div>

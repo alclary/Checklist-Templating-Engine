@@ -5,16 +5,16 @@ import { db } from "../functions/db";
 import RecordClass from "../classes/RecordClass";
 
 export default function NewRecordModalForm({ setShowRecordCreate }) {
-  let [newRecordId, setNewRecordId] = useState("");
+  let [newRecordName, setNewRecordName] = useState("");
   let [newRecordType, setNewRecordType] = useState(undefined);
 
   async function handleSubmit(e) {
     e.preventDefault();
-    if (newRecordType === undefined || newRecordId === "") {
+    if (newRecordType === undefined || newRecordName === "") {
       console.log("SPECIFY TEMPLATE AND UNIQUE ID!");
       return;
     } else {
-      const newRecord = new RecordClass(newRecordId, newRecordType);
+      const newRecord = new RecordClass(newRecordName, newRecordType);
       // initialize and (built-in) save record
       await newRecord.init();
       // close modal form
@@ -36,9 +36,9 @@ export default function NewRecordModalForm({ setShowRecordCreate }) {
             <input
               type="text"
               id="multi-id-input"
-              value={newRecordId}
+              value={newRecordName}
               onChange={(e) => {
-                setNewRecordId(e.target.value);
+                setNewRecordName(e.target.value);
               }}
             ></input>
           </div>

@@ -2,11 +2,15 @@ import { db } from "../functions/db";
 // import axios from "axios";
 
 export default class RecordClass {
-  constructor(recordId, recordType) {
+  constructor(recordName, recordType) {
     // required
-    this.recordId = recordId;
+    this.name = recordName;
     // recordType aka template
-    this.recordType = parseInt(recordType);
+    try {
+      this.recordType = parseInt(recordType, 10);
+    } catch {
+      this.recordType = recordType;
+    }
     // metadata
     this.dateCreated = Date.now();
     this.lastModified = Date.now();

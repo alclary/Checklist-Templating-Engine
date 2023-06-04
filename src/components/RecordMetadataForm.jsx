@@ -1,8 +1,6 @@
-// import { useState } from "react";
 import { db } from "../functions/db";
 import moment from "moment";
 import { PropTypes } from "prop-types";
-import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function RecordMetadataForm({ record, setRecord }) {
@@ -11,13 +9,13 @@ function RecordMetadataForm({ record, setRecord }) {
   function handleSubmit(e) {
     e.preventDefault();
     setRecord({ ...record, lastModified: Date.now() });
-    db.records.put(record, record.id);
+    db.records.put(record);
     console.log("Template saved!");
   }
   function handleDelete() {
     if (
       window.confirm(
-        `Are you sure you want to DELETE record ${record.recordId}? `
+        `Are you sure you want to DELETE record ${record.name}? `
       ) === true
     ) {
       db.records.delete(record.id);
@@ -28,18 +26,16 @@ function RecordMetadataForm({ record, setRecord }) {
   return (
     <div className="templateMeta ui clearing segment">
       <form onSubmit={handleSubmit} className="ui form">
-        <div className="ui dividing header">
-          {record.recordId} - Record Details
-        </div>
+        <div className="ui dividing header">{record.name} - Record Details</div>
         <div className="two fields">
           <div className="field">
             <label htmlFor="multi-id-input">Record ID</label>
             <input
               type="text"
               id="multi-id-input"
-              value={record.recordId}
+              value={record.name}
               onChange={(e) => {
-                setRecord({ ...record, recordId: e.target.value });
+                setRecord({ ...record, name: e.target.value });
               }}
             ></input>
           </div>

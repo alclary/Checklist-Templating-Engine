@@ -11,13 +11,13 @@ export default function Record() {
   const [record, setRecord] = useState();
 
   useEffect(() => {
-    getTemplate();
+    fetchRecord();
   }, []);
 
-  const getTemplate = async () => {
+  const fetchRecord = async () => {
     await db.records
-      .where("recordId")
-      .equals(recordId)
+      .where("id")
+      .equals(Number(recordId))
       .first((record) => {
         setRecord(record);
       })
