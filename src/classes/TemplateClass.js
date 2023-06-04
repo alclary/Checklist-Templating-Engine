@@ -68,4 +68,10 @@ export default class TemplateClass {
       ],
     };
   }
+
+  async save() {
+    this.lastModified = Date.now();
+    await db.templates.put(this);
+    console.log("Template saved.");
+  }
 }

@@ -42,6 +42,7 @@ export default class RecordClass {
   }
 
   async save() {
+    this.lastModified = Date.now();
     await db.records.put(this);
     console.log("Record saved.");
   }
