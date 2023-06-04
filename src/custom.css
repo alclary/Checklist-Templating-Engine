@@ -6,7 +6,8 @@ body {
   padding-top: 5em;
 }
 
-.pageTitle > h2 {
+.pageTitle > h2,
+#templateList {
   padding-left: 1rem;
   padding-right: 1rem;
 }
