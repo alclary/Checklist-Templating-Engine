@@ -11,7 +11,7 @@ export default function TemplateListItem({ template }) {
   return (
     <div className="ui card" onClick={handleClick}>
       <div className="content">
-        <div className="header">{template.templateName}</div>
+        <div className="header">{template.name}</div>
         <div className="meta">
           <span>
             Created {moment(template.dateCreated).startOf("day").fromNow()}

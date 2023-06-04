@@ -34,9 +34,9 @@ function TemplateMetadataForm({ template, setTemplate }) {
             <input
               type="text"
               id="multi-name-input"
-              value={template.templateName}
+              value={template.name}
               onChange={(e) => {
-                setTemplate({ ...template, templateName: e.target.value });
+                setTemplate({ ...template, name: e.target.value });
                 console.log(template);
               }}
             ></input>
@@ -52,9 +52,9 @@ function TemplateMetadataForm({ template, setTemplate }) {
             <input
               type="color"
               id="multi-color-input"
-              value={template.templateColor}
+              value={template.color}
               onChange={(e) => {
-                setTemplate({ ...template, templateColor: e.target.value });
+                setTemplate({ ...template, color: e.target.value });
                 console.log(template);
               }}
             ></input>
