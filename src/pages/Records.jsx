@@ -19,9 +19,12 @@ export default function Records() {
       </div>
 
       <SearchBar newAction={setShowRecordCreate} newState={showRecordCreate} />
+
+      {/* Conditionally shown new record modal form */}
       {showRecordCreate && (
         <NewRecordModalForm setShowRecordCreate={setShowRecordCreate} />
       )}
+
       <div id="recordList" className="ui cards">
         {records?.map((record) => (
           <RecordListItem key={record.recordId} record={record} />
