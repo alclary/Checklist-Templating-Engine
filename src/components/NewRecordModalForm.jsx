@@ -3,7 +3,6 @@ import { PropTypes } from "prop-types";
 import { useLiveQuery } from "dexie-react-hooks";
 import { db } from "../functions/db";
 import RecordClass from "../classes/RecordClass";
-import axios from "axios";
 
 export default function NewRecordModalForm({ setShowRecordCreate }) {
   let [newRecordId, setNewRecordId] = useState("");
@@ -16,7 +15,10 @@ export default function NewRecordModalForm({ setShowRecordCreate }) {
       return;
     } else {
       const newRecord = new RecordClass(newRecordId, newRecordType);
+      // initialize and (built-in) save record
       await newRecord.init();
+      // close modal form
+      setShowRecordCreate(false);
     }
   }
 
@@ -55,7 +57,7 @@ export default function NewRecordModalForm({ setShowRecordCreate }) {
               <option value={undefined}>Select Template</option>
               {templates?.map((template) => (
                 <option key={template.id} value={template.id}>
-                  {template.templateName}
+                  {template.name}
                 </option>
               ))}
             </select>
@@ -83,6 +85,7 @@ export default function NewRecordModalForm({ setShowRecordCreate }) {
           type="button"
           className="ui right floated inverted red button"
           onClick={() => {
+            // close modal form
             setShowRecordCreate(false);
           }}
         >
