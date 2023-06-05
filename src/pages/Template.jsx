@@ -54,7 +54,9 @@ export default function Template() {
         onSubmit={handleSubmit}
       >
         <div>
-          <button type="submit">Save Schema</button>
+          <button type="submit" className="ui right floated button">
+            Save Schema
+          </button>
         </div>
       </SchemaForm>
     </div>

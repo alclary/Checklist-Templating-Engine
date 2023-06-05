@@ -50,7 +50,9 @@ export default function Record() {
         onSubmit={handleSubmit}
       >
         <div>
-          <button type="submit">Save Record</button>
+          <button type="submit" className="ui right floated button">
+            Save Record
+          </button>
         </div>
       </SchemaForm>
     </div>
