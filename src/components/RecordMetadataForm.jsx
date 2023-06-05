@@ -1,16 +1,28 @@
 import { db } from "../functions/db";
 import moment from "moment";
 import { PropTypes } from "prop-types";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Dropdown } from "semantic-ui-react";
 
 function RecordMetadataForm({ record, setRecord }) {
   const navigate = useNavigate();
 
+  // tag dropdown options, stored in state
+  const [tagOptions, setTagOptions] = useState([]);
+
+  // On first render, get all unique record tags, to load into dropdown
+  useEffect(() => {
+    db.records.orderBy("tags").uniqueKeys((tagArray) => {
+      setTagOptions(tagArray);
+    });
+  }, []);
+
+  // On submit, update lastModified field and save record to db
   function handleSubmit(e) {
     e.preventDefault();
     setRecord({ ...record, lastModified: Date.now() });
     db.records.put(record);
-    console.log("Template saved!");
   }
   function handleDelete() {
     if (
@@ -71,15 +83,33 @@ function RecordMetadataForm({ record, setRecord }) {
         </div>
         <div className="one field">
           <div className="field">
-            <label htmlFor="multi-tags">Tags (comma-delimited)</label>
-            <input
-              type="text"
-              id="multi-tags"
+            <label htmlFor="multi-tags">Record Tags</label>
+            <Dropdown
+              options={tagOptions.map((tag) => ({
+                key: tag,
+                text: tag,
+                value: tag,
+              }))}
+              placeholder="Select Tags"
+              search
+              selection
+              fluid
+              multiple
+              allowAdditions
               value={record.tags}
-              onChange={(e) => {
-                setRecord({ ...record, tags: e.target.value });
+              // Handle adding new dropdown option for allowAdditions tags
+              onAddItem={(e, { value }) => {
+                if (tagOptions.includes(value)) {
+                  return;
+                } else {
+                  setTagOptions([...tagOptions, value]);
+                }
               }}
-            ></input>
+              // Handle updating recordTags state
+              onChange={(e, { value }) => {
+                setRecord({ ...record, tags: value });
+              }}
+            />
           </div>
         </div>
 

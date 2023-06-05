@@ -1,22 +1,34 @@
-// import { useState } from "react";
 import { db } from "../functions/db";
 import moment from "moment";
 import { PropTypes } from "prop-types";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Dropdown } from "semantic-ui-react";
 
 function TemplateMetadataForm({ template, setTemplate }) {
   const navigate = useNavigate();
 
+  // Tag dropdown options, stored in state
+  const [tagOptions, setTagOptions] = useState([]);
+
+  // On first render, get all unique template tags to load as dropdown options
+  useEffect(() => {
+    db.records.orderBy("tags").uniqueKeys((tagArray) => {
+      setTagOptions(tagArray);
+    });
+  }, []);
+
+  // On submit, update lastModified field and save template to db
   function handleSubmit(e) {
     e.preventDefault();
     setTemplate({ ...template, lastModified: Date.now() });
     db.templates.put(template);
-    console.log("Template saved!");
   }
+
   function handleDelete() {
     if (
       window.confirm(
-        `Are you sure you want to DELETE the record for customer ${template.id}? `
+        `Are you sure you want to DELETE template ${template.id}? `
       ) === true
     ) {
       db.templates.delete(template.id);
@@ -43,7 +55,12 @@ function TemplateMetadataForm({ template, setTemplate }) {
           </div>
           <div className="field disabled">
             <label htmlFor="multi-id-input">Template ID</label>
-            <input type="text" id="multi-id-input" value={template.id}></input>
+            <input
+              type="text"
+              id="multi-id-input"
+              value={template.id}
+              readOnly
+            ></input>
           </div>
         </div>
         <div className="three fields">
@@ -65,6 +82,7 @@ function TemplateMetadataForm({ template, setTemplate }) {
               type="date"
               id="multi-date-created"
               value={moment(template.dateCreated).format("YYYY-MM-DD")}
+              readOnly
             ></input>
           </div>
           <div className="field disabled">
@@ -73,7 +91,41 @@ function TemplateMetadataForm({ template, setTemplate }) {
               type="date"
               id="multi-last-modified"
               value={moment(template.lastModified).format("YYYY-MM-DD")}
+              readOnly
             ></input>
+          </div>
+        </div>
+        <div className="one field">
+          <div className="field">
+            <label htmlFor="multi-tags">
+              Template Tags (Note: children will inherit)
+            </label>
+            <Dropdown
+              options={tagOptions.map((tag) => ({
+                key: tag,
+                text: tag,
+                value: tag,
+              }))}
+              placeholder="Select Tags"
+              search
+              selection
+              fluid
+              multiple
+              allowAdditions
+              value={template.tags}
+              // If changed value in tagOptions, do nothing; else, add.
+              onAddItem={(e, { value }) => {
+                if (tagOptions.includes(value)) {
+                  return;
+                } else {
+                  setTagOptions([...tagOptions, value]);
+                }
+              }}
+              // Handle updating templateTags state
+              onChange={(e, { value }) => {
+                setTemplate({ ...template, tags: value });
+              }}
+            />
           </div>
         </div>
 
