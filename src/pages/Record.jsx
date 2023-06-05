@@ -29,8 +29,6 @@ export default function Record() {
     db.records.put(record);
   }
 
-  const uiSchema = {};
-
   if (isLoading) {
     return (
       <div className="loading">
@@ -45,7 +43,6 @@ export default function Record() {
         schema={record.schema}
         validator={validator}
         formData={record.formData}
-        uiSchema={uiSchema}
         onChange={(e) => {
           console.log(e);
           setRecord({ ...record, formData: e.formData });
