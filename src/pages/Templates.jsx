@@ -4,13 +4,15 @@ import { useLiveQuery } from "dexie-react-hooks";
 import { db } from "../functions/db";
 import { useState } from "react";
 import NewTemplateModalForm from "../components/NewTemplateModalForm";
+import searchWrapper from "../functions/searchWrapper";
 
 export default function Templates() {
   let [showTemplateCreate, setShowTemplateCreate] = useState(false);
+  let [searchQuery, setSearchQuery] = useState("");
 
   const templates = useLiveQuery(async () => {
-    return await db.templates.toArray();
-  });
+    return searchWrapper(db.templates, searchQuery);
+  }, [searchQuery]);
 
   return (
     <div className="ui grid">
@@ -19,8 +21,10 @@ export default function Templates() {
       </div>
 
       <SearchBar
-        newAction={setShowTemplateCreate}
-        newState={showTemplateCreate}
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
+        newButtonSetter={setShowTemplateCreate}
+        newButtonState={showTemplateCreate}
       />
 
       {/* Conditionally shown new template modal form */}

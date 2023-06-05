@@ -1,11 +1,24 @@
 import { PropTypes } from "prop-types";
 
-export default function SearchBar({ newAction, newState }) {
+export default function SearchBar({
+  searchQuery,
+  setSearchQuery,
+  newButtonSetter,
+  newButtonState,
+}) {
   return (
     <div id="searchbar" className="searchBar row">
       <div className="eight wide column">
         <div className="ui fluid icon input">
-          <input type="text" placeholder="Search..." />
+          <input
+            type="text"
+            placeholder="Search..."
+            value={searchQuery}
+            onChange={(e) => {
+              console.log(e.target.value);
+              setSearchQuery(e.target.value);
+            }}
+          />
           <i className="search icon"></i>
         </div>
       </div>
@@ -13,7 +26,7 @@ export default function SearchBar({ newAction, newState }) {
         <i
           className="large plus icon"
           onClick={() => {
-            newAction(!newState);
+            newButtonSetter(!newButtonState);
           }}
         ></i>
       </div>
@@ -22,6 +35,8 @@ export default function SearchBar({ newAction, newState }) {
 }
 
 SearchBar.propTypes = {
-  newAction: PropTypes.func,
-  newState: PropTypes.bool,
+  newButtonSetter: PropTypes.func,
+  newButtonState: PropTypes.bool,
+  searchQuery: PropTypes.string,
+  setSearchQuery: PropTypes.func,
 };
