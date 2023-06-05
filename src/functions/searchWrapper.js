@@ -1,23 +1,25 @@
-export default async function searchWrapper(collection, searchQuery) {
+export default async function searchWrapper(table, searchQuery) {
+  let results = undefined;
   // return all templates
   if (searchQuery === "") {
-    return await collection.toArray();
+    results = await table.toCollection().sortBy("lastModified");
   }
-  // return templates with matching single tag
+  // return items with matching single tag
   else if (searchQuery.startsWith("tag:")) {
     let tag = searchQuery.slice(4);
     tag = tag.split(" ")[0];
-    return await collection
+    results = await table
       .where("tags")
       .startsWithIgnoreCase(tag)
       .distinct()
-      .toArray();
+      .sortBy("lastModified");
   }
-  // return templates with matching name
+  // return items with matching name
   else {
-    return await collection
+    results = await table
       .where("name")
       .startsWithIgnoreCase(searchQuery)
-      .toArray();
+      .sortBy("lastModified");
   }
+  return results;
 }
