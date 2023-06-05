@@ -7,22 +7,24 @@ export default function SearchBar({
   newButtonState,
 }) {
   return (
-    <div id="searchbar" className="searchBar row">
-      <div className="eight wide column">
-        <div className="ui fluid icon input">
-          <input
-            type="text"
-            placeholder="Search..."
-            value={searchQuery}
-            onChange={(e) => {
-              console.log(e.target.value);
-              setSearchQuery(e.target.value);
-            }}
-          />
-          <i className="search icon"></i>
+    <div id="searchwidget" className="row ui secondary menu">
+      <div className="searchBar left menu">
+        <div className="item">
+          <div className="ui icon input">
+            <input
+              type="text"
+              placeholder="Search..."
+              value={searchQuery}
+              onChange={(e) => {
+                console.log(e.target.value);
+                setSearchQuery(e.target.value);
+              }}
+            />
+            <i className="search icon"></i>
+          </div>
         </div>
       </div>
-      <div>
+      <div className="item">
         <i
           className="large plus icon"
           onClick={() => {

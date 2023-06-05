@@ -50,8 +50,7 @@ export default function Navbar() {
           <i className="big arrow left icon"></i>
         </div>
       </div>
-      <div className="row ui divider"></div>
-      {/* <div className="ui divider"></div> */}
+      <div className="ui row divider"></div>
     </>
   );
 }

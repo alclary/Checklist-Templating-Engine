@@ -1,8 +1,8 @@
-// import { useState } from "react";
+import { PropTypes } from "prop-types";
 import moment from "moment/moment";
 import { useNavigate } from "react-router-dom";
 
-export default function TemplateListItem({ template }) {
+export default function TemplateCard({ template }) {
   const navigate = useNavigate();
 
   function handleClick() {
@@ -18,6 +18,17 @@ export default function TemplateListItem({ template }) {
           </span>
         </div>
       </div>
+      <div className="extra content">
+        {template.tags.slice(0, 4).map((tag) => (
+          <span key="tag" className="ui label">
+            {tag}
+          </span>
+        ))}
+      </div>
     </div>
   );
 }
+
+TemplateCard.propTypes = {
+  template: PropTypes.object,
+};

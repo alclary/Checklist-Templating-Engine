@@ -1,5 +1,5 @@
 import SearchBar from "../components/SearchBar";
-import TemplateListItem from "../components/TemplateListItem";
+import TemplateCard from "../components/TemplateCard";
 import { useLiveQuery } from "dexie-react-hooks";
 import { db } from "../functions/db";
 import { useState } from "react";
@@ -15,10 +15,8 @@ export default function Templates() {
   }, [searchQuery]);
 
   return (
-    <div className="ui grid">
-      <div className="pageTitle row">
-        <h2>Templates View</h2>
-      </div>
+    <>
+      <h1 className="ui header">Templates View</h1>
 
       <SearchBar
         searchQuery={searchQuery}
@@ -34,9 +32,9 @@ export default function Templates() {
 
       <div id="templateList" className="row ui cards">
         {templates?.map((template) => (
-          <TemplateListItem key={template.id} template={template} />
+          <TemplateCard key={template.id} template={template} />
         ))}
       </div>
-    </div>
+    </>
   );
 }

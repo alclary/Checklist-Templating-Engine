@@ -1,5 +1,5 @@
 import SearchBar from "../components/SearchBar";
-import RecordListItem from "../components/RecordListItem";
+import RecordCard from "../components/RecordCard";
 import { useLiveQuery } from "dexie-react-hooks";
 import { db } from "../functions/db";
 import { useState } from "react";
@@ -15,10 +15,8 @@ export default function Records() {
   }, [searchQuery]);
 
   return (
-    <div className="ui grid">
-      <div className="pageTitle row">
-        <h2>Records View</h2>
-      </div>
+    <>
+      <h1 className="ui header">Records View</h1>
 
       <SearchBar
         searchQuery={searchQuery}
@@ -34,9 +32,9 @@ export default function Records() {
 
       <div id="recordList" className="row ui cards">
         {records?.map((record) => (
-          <RecordListItem key={record.name} record={record} />
+          <RecordCard key={record.name} record={record} />
         ))}
       </div>
-    </div>
+    </>
   );
 }
