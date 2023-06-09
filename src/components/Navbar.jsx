@@ -26,28 +26,33 @@ export default function Navbar() {
   let condNavItem;
   if (isTemplateRoute) {
     condNavItem = (
-      <div className="column" onClick={navigateRecords}>
-        <i className="big tasks icon"></i>
-      </div>
+      <a className="item" onClick={navigateRecords}>
+        <i className="large tasks icon"></i>
+        Records
+      </a>
     );
   } else {
     condNavItem = (
-      <div className="column" onClick={navigateTemplates}>
-        <i className="big columns icon"></i>
-      </div>
+      <a className="item" onClick={navigateTemplates}>
+        <i className="large columns icon"></i>
+        Templates
+      </a>
     );
   }
 
   return (
     <>
-      <div id="navbar" className="row">
-        <div className="thirteen wide column"></div>
-        <div className="column" onClick={navigateHome}>
-          <i className="big home icon"></i>
-        </div>
+      <div id="navWrapper" className="row">
+        <div id="navBar" className="ui compact menu">
+          <a className="item" onClick={navigateHome}>
+            <i className="large home icon"></i>
+            Home
+          </a>
         {condNavItem}
-        <div className="column" onClick={navigateBack}>
-          <i className="big arrow left icon"></i>
+          <a className="item" onClick={navigateBack}>
+            <i className="large arrow left icon"></i>
+            Back
+          </a>
         </div>
       </div>
       <div className="ui row divider"></div>

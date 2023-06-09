@@ -2,7 +2,7 @@ body {
   margin: auto 10%;
 }
 
-#navbar {
+#navWrapper {
   padding-top: 5em;
 }
 
@@ -15,4 +15,9 @@ body {
 .modalForm {
   margin-left: 1rem !important;
   margin-right: 1rem !important;
+}
+
+#navBar {
+  margin-right: 1rem !important;
+  margin-left: auto !important;
 }
