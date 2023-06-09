@@ -19,6 +19,9 @@ export default function Navbar() {
   const navigateRecords = () => {
     navigate("/records");
   };
+  const navigateStats = () => {
+    navigate("/stats");
+  };
   const navigateBack = () => {
     navigate(-1);
   };
@@ -48,7 +51,11 @@ export default function Navbar() {
             <i className="large home icon"></i>
             Home
           </a>
-        {condNavItem}
+          {condNavItem}
+          <a className="item" onClick={navigateStats}>
+            <i className="large chart bar icon"></i>
+            Stats
+          </a>
           <a className="item" onClick={navigateBack}>
             <i className="large arrow left icon"></i>
             Back

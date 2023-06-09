@@ -21,3 +21,7 @@ body {
   margin-right: 1rem !important;
   margin-left: auto !important;
 }
+
+.ui.statistics {
+  justify-content: center;
+}
