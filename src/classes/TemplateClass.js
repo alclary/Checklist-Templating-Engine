@@ -38,7 +38,7 @@ export default class TemplateClass {
                       type: "string",
                       title: "Checkbox text:",
                     },
-                    checkboxDesc: {
+                    checkboxDescription: {
                       type: "string",
                       title:
                         "(Optional) information or instructions for checkbox:",
@@ -58,14 +58,14 @@ export default class TemplateClass {
           checkItems: [
             {
               checkboxText: "checkbox1.1_text",
-              checkboxDesc: "checkbox1.1_desc_optional",
+              checkboxDescription: "checkbox1.1_desc_optional",
             },
             {
               checkboxText: "checkbox1.2_text",
             },
           ],
           sectionTitle: "section1_title",
-          sectionDesc: "section1_desc_optional",
+          sectionDescription: "section1_desc_optional",
         },
       ],
     };
