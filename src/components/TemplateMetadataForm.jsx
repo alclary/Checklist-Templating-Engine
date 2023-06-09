@@ -13,7 +13,7 @@ function TemplateMetadataForm({ template, setTemplate }) {
 
   // On first render, get all unique template tags to load as dropdown options
   useEffect(() => {
-    db.records.orderBy("tags").uniqueKeys((tagArray) => {
+    db.templates.orderBy("tags").uniqueKeys((tagArray) => {
       setTagOptions(tagArray);
     });
   }, []);
