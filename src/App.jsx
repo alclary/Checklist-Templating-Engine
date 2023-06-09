@@ -8,9 +8,9 @@ import {
 } from "react-router-dom";
 import Record from "./pages/Record";
 import Records from "./pages/Records";
-import RecordsCards from "./pages/RecordsCards";
 import Template from "./pages/Template";
 import Templates from "./pages/Templates";
+import Stats from "./pages/Stats";
 import SetupDebug from "./pages/SetupDebug";
 import Navbar from "./components/Navbar";
 
@@ -20,10 +20,10 @@ function App() {
       <Route path="/" element={<Root />}>
         <Route index element={<Records />} />
         <Route path="records" element={<Records />} />
-        <Route path="records/cards" element={<RecordsCards />} />
         <Route path="records/:recordId" element={<Record />} />
         <Route path="templates" element={<Templates />} />
         <Route path="templates/:templateId" element={<Template />} />
+        <Route path="stats" element={<Stats />} />
         <Route path="setupDebug" element={<SetupDebug />} />
       </Route>
     )
