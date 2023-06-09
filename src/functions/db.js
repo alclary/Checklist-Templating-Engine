@@ -4,7 +4,7 @@ import RecordClass from "../classes/RecordClass";
 
 export const db = new Dexie("testingDatabase");
 db.version(1).stores({
-  records: "++id, &name, recordType, *tags",
+  records: "++id, &name, recordType, dateCreated, *tags",
   templates: "++id, &name, *tags",
 });
 
