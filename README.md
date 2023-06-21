@@ -1,1 +1,1 @@
-# RegHelper (CS-361 Portfolio Project)
+# Checklist Templating Engine
