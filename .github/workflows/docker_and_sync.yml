@@ -2,7 +2,9 @@ name: Dockerize and Sync
 
 on:
   push:
-    # Only build on versioned tags (e.g. v1.2.1)
+    # Only build on versioned tags
+    # Usage:  git tag v1.0.0
+    #         git push origin v1.0.0
     tags:
       - 'v[0-9]+.[0-9]+.[0-9]+'
     
