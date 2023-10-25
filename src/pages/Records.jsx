@@ -1,5 +1,5 @@
 import SearchBar from "../components/SearchBar";
-import RecordCard from "../components/RecordCard";
+import Card from "../components/Card";
 import { useLiveQuery } from "dexie-react-hooks";
 import { db } from "../functions/db";
 import { useState } from "react";
@@ -32,7 +32,7 @@ export default function Records() {
 
       <div id="recordList" className="row ui cards">
         {records?.map((record) => (
-          <RecordCard key={record.name} record={record} />
+          <Card key={record.name} data={record} type="Record" />
         ))}
       </div>
     </>
