@@ -1,17 +1,30 @@
 import SearchBar from "../components/SearchBar";
 import Card from "../components/Card";
-import { useLiveQuery } from "dexie-react-hooks";
 import { db } from "../functions/db";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import NewRecordModalForm from "../components/NewRecordModalForm";
-import searchWrapper from "../functions/searchWrapper";
 
 export default function Records() {
+  let [records, setRecords] = useState([]);
   let [showRecordCreate, setShowRecordCreate] = useState(false);
   let [searchQuery, setSearchQuery] = useState("");
 
-  const records = useLiveQuery(async () => {
-    return searchWrapper(db.records, searchQuery);
+  useEffect(() => {
+    // This is a relatively expensive way to full text search record names;
+    //  efficient/indexed full test search is currently unsupported by dexie.
+    //  Not ideal for large record databases.
+    const matchingRecords = async () => {
+      if (searchQuery == "") {
+        setRecords(await db.records.toArray());
+      } else {
+        // i represents case insensitive flag for regex
+        let regex = new RegExp(searchQuery, "i");
+        setRecords(
+          await db.records.filter((record) => regex.test(record.name)).toArray()
+        );
+      }
+    };
+    matchingRecords();
   }, [searchQuery]);
 
   return (
@@ -31,7 +44,7 @@ export default function Records() {
       )}
 
       <div id="recordList" className="row ui cards">
-        {records?.map((record) => (
+        {records.map((record) => (
           <Card key={record.name} data={record} type="Record" />
         ))}
       </div>
